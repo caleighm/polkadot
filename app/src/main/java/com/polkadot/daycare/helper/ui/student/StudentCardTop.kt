@@ -52,21 +52,22 @@ fun StudentCardTop(
                 Column(Modifier.padding(12.dp)) {
                     Text(
                         text = student.nickname.ifEmpty { student.firstName },
-                        style = typography.titleMedium,
-                        modifier = Modifier.padding(bottom = 8.dp),
-                        color = MaterialTheme.colorScheme.secondary
+                        style = typography.titleLarge,
+                        modifier = Modifier.padding(bottom = 8.dp)
                     )
                     Text(
                         text = "${student.firstName} ${student.lastName}",
                         style = typography.bodySmall,
-                        modifier = Modifier.padding(bottom = 4.dp)
+                        modifier = Modifier.padding(bottom = 4.dp),
+                        color = MaterialTheme.colorScheme.secondary
                     )
                     Text(
                         text = "${stringResource(
                             id = R.string.student_years_old,
                             formatArgs = arrayOf(student.birthday.yearsOld())
                         )} (${student.birthday.toPrettyString()})",
-                        style = typography.bodySmall
+                        style = typography.bodySmall,
+                        color = MaterialTheme.colorScheme.secondary
                     )
                 }
             }

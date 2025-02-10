@@ -10,6 +10,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.TextUnitType
+import androidx.compose.ui.unit.sp
 import com.polkadot.daycare.helper.R
 import com.polkadot.daycare.helper.ui.theme.PolkadotAppTheme
 import java.util.Locale
@@ -25,8 +28,9 @@ fun PolkadotAppBar(modifier: Modifier) {
         ),
         title = {
             Text(
-                text = stringResource(R.string.app_name).lowercase(Locale.CANADA),
-                style = typography.titleMedium
+                text = "${stringResource(R.string.app_name).lowercase(Locale.CANADA)}!",
+                style = typography.headlineSmall,
+                fontSize = TextUnit(14f, TextUnitType.Sp)
             )
         }
     )

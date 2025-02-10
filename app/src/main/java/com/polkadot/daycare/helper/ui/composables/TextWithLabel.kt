@@ -22,17 +22,17 @@ fun TextWithLabel(modifier: Modifier, label: String, body: List<String?>) {
     Row(modifier = modifier.padding(top = 8.dp), verticalAlignment = Alignment.CenterVertically) {
         Text(
             text = label,
-            style = typography.labelSmall,
+            style = typography.labelMedium,
             color = MaterialTheme.colorScheme.primary,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier.width(50.dp)
+            modifier = Modifier.width(60.dp)
         )
         Spacer(Modifier.size(8.dp))
         for (line in body) {
             if (line != null) {
                 Text(
                     text = line,
-                    style = typography.bodySmall
+                    style = typography.bodyMedium
                 )
             }
         }
