@@ -1,4 +1,8 @@
-# TODO
+# Hello!
+
+This is a sweet little app for home daycare providers. Still under development.
+
+## TODO
 
 - Network mock
 - Add student
@@ -14,7 +18,7 @@
 - Local server with authentication
 - Dynamic colours
 
-# DONE
+## DONE
 
 - Student list
 - Nav bar / header / something
