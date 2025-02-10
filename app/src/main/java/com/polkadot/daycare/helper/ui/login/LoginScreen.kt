@@ -45,7 +45,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.polkadot.daycare.helper.ui.theme.MyApplicationTheme
+import com.polkadot.daycare.helper.ui.theme.PolkadotAppTheme
 
 @Composable
 fun LoginScreen(onNavigateToDaycare: () -> Unit) {
@@ -227,7 +227,7 @@ fun PasswordField(
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun LoginFormPreview() {
-    MyApplicationTheme {
+    PolkadotAppTheme {
         LoginScreen(onNavigateToDaycare = {})
     }
 }
@@ -235,7 +235,7 @@ fun LoginFormPreview() {
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun LoginFormPreviewDark() {
-    MyApplicationTheme(darkTheme = true) {
+    PolkadotAppTheme(darkTheme = true) {
         LoginScreen(onNavigateToDaycare = {})
     }
 }

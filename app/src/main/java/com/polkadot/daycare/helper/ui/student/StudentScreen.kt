@@ -1,6 +1,7 @@
 package com.polkadot.daycare.helper.ui.student
 
-import com.polkadot.daycare.helper.ui.theme.MyApplicationTheme
+import android.util.Log
+import com.polkadot.daycare.helper.ui.theme.PolkadotAppTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -20,13 +21,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.polkadot.daycare.helper.TAG
+import com.polkadot.daycare.helper.data.models.Student
+import com.polkadot.daycare.helper.data.models.fakeStudents
 
 @Composable
 fun StudentScreen(modifier: Modifier = Modifier, viewModel: StudentViewModel = hiltViewModel()) {
-    val items by viewModel.uiState.collectAsStateWithLifecycle()
-    if (items is StudentUiState.Success) {
+    val students by viewModel.uiState.collectAsStateWithLifecycle()
+    if (students is StudentUiState.Success) {
         StudentScreen(
-            items = (items as StudentUiState.Success).data,
+            students = (students as StudentUiState.Success).data,
             onSave = viewModel::addStudent,
             modifier = modifier
         )
@@ -35,11 +39,15 @@ fun StudentScreen(modifier: Modifier = Modifier, viewModel: StudentViewModel = h
 
 @Composable
 internal fun StudentScreen(
-    items: List<String>,
+    students: List<Student>,
     onSave: (name: String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(modifier) {
+        students.forEach {
+            StudentCardTop(it, Modifier.padding(4.dp))
+        }
+
         var nameStudent by remember { mutableStateOf("Compose") }
         Row(
             modifier = Modifier.fillMaxWidth().padding(bottom = 24.dp),
@@ -54,9 +62,6 @@ internal fun StudentScreen(
                 Text("Save")
             }
         }
-        items.forEach {
-            Text("Saved item: $it")
-        }
     }
 }
 
@@ -65,15 +70,15 @@ internal fun StudentScreen(
 @Preview(showBackground = true)
 @Composable
 private fun DefaultPreview() {
-    MyApplicationTheme {
-        StudentScreen(listOf("Compose", "Room", "Kotlin"), onSave = {})
+    PolkadotAppTheme {
+        StudentScreen(fakeStudents, onSave = {})
     }
 }
 
 @Preview(showBackground = true, widthDp = 480)
 @Composable
 private fun PortraitPreview() {
-    MyApplicationTheme {
-        StudentScreen(listOf("Compose", "Room", "Kotlin"), onSave = {})
+    PolkadotAppTheme {
+        StudentScreen(fakeStudents, onSave = {})
     }
 }

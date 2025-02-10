@@ -5,6 +5,7 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.polkadot.daycare.helper.data.models.fakeStudents
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -22,14 +23,13 @@ class StudentScreenTest {
     @Before
     fun setup() {
         composeTestRule.setContent {
-            StudentScreen(FAKE_DATA, onSave = {})
+            StudentScreen(fakeStudents, onSave = {})
         }
     }
 
     @Test
     fun firstItem_exists() {
-        composeTestRule.onNodeWithText(FAKE_DATA.first()).assertExists().performClick()
+        composeTestRule.onNodeWithText(fakeStudents.first().nickname).assertExists().performClick()
     }
 }
 
-private val FAKE_DATA = listOf("Compose", "Room", "Kotlin")

@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name"></string>
+    <string name="app_name">Polkadot</string>
+
+    <!-- Student Screen -->
+    <string name="student_title">Students</string>
+    <string name="student_guardian">Guardian: %1$s (%2$s)</string>
+    <string name="student_age">%1$s years old (%2$s)</string>
 </resources>

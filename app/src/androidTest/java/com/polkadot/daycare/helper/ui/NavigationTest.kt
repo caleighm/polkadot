@@ -6,7 +6,7 @@ import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Rule
 import org.junit.Test
-import com.polkadot.daycare.helper.data.di.fakeStudents
+import com.polkadot.daycare.helper.data.models.fakeStudents
 
 @HiltAndroidTest
 class NavigationTest {
@@ -20,7 +20,7 @@ class NavigationTest {
     @Test
     fun test1() {
         // TODO: Add navigation tests
-        composeTestRule.onNodeWithText(fakeStudents.first(), substring = true).assertExists()
+        composeTestRule.onNodeWithText(fakeStudents.first().nickname, substring = true).assertExists()
     }
 }
 

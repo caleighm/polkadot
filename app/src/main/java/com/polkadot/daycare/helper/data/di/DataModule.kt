@@ -8,6 +8,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import com.polkadot.daycare.helper.data.StudentRepository
 import com.polkadot.daycare.helper.data.DefaultStudentRepository
+import com.polkadot.daycare.helper.data.models.Student
+import com.polkadot.daycare.helper.data.models.fakeStudents
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -23,11 +25,9 @@ interface DataModule {
 }
 
 class FakeStudentRepository @Inject constructor() : StudentRepository {
-    override val students: Flow<List<String>> = flowOf(fakeStudents)
+    override val students: Flow<List<Student>> = flowOf(fakeStudents)
 
-    override suspend fun add(name: String) {
+    override suspend fun add(student: Student) {
         throw NotImplementedError()
     }
 }
-
-val fakeStudents = listOf("One", "Two", "Three")
