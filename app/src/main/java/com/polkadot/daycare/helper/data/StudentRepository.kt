@@ -6,6 +6,7 @@ import com.polkadot.daycare.helper.data.local.database.StudentDao
 import com.polkadot.daycare.helper.data.models.Guardian
 import com.polkadot.daycare.helper.data.models.Student
 import com.polkadot.daycare.helper.data.models.StudentOverview
+import com.polkadot.daycare.helper.data.network.NetworkDataSource
 import javax.inject.Inject
 
 interface GuardianRepository {
@@ -26,7 +27,8 @@ interface StudentRepository : GuardianRepository {
 
 class DefaultStudentRepository @Inject constructor(
     private val studentDao: StudentDao,
-    private val guardianDao: GuardianDao
+    private val guardianDao: GuardianDao,
+    private val networkSource: NetworkDataSource,
 ) : StudentRepository {
 
     override val students = studentDao.getStudentBasics()
