@@ -12,7 +12,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 /**
- * UI tests for [StudentScreen].
+ * UI tests for [StudentsScreen].
  */
 @RunWith(AndroidJUnit4::class)
 class StudentScreenTest {
@@ -23,13 +23,13 @@ class StudentScreenTest {
     @Before
     fun setup() {
         composeTestRule.setContent {
-            StudentScreen(fakeStudents, onSave = {})
+            StudentsScreen(fakeStudents, onSave = {}, onNavigateToStudentDetails = { _: Int, _: Int -> })
         }
     }
 
     @Test
     fun firstItem_exists() {
-        composeTestRule.onNodeWithText(fakeStudents.first().nickname).assertExists().performClick()
+        composeTestRule.onNodeWithText(fakeStudents.first().firstName).assertExists().performClick()
     }
 }
 

@@ -1,9 +1,12 @@
 package com.polkadot.daycare.helper.data.models
 
 import androidx.room.TypeConverter
+import java.text.DateFormat
 import java.text.DateFormatSymbols
+import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
+import java.util.Locale
 
 class Converters {
     @TypeConverter
@@ -21,6 +24,7 @@ fun Date.yearsOld(): Int {
     return Calendar.getInstance().get(Calendar.YEAR) - this.year - 1900
 }
 
-fun Date.toBirthdayString(): String {
-    return "${this.day} ${DateFormatSymbols().months[this.month - 1]} ${this.year + 1900}"
+fun Date.toPrettyString(): String {
+    val dateFormat: DateFormat = SimpleDateFormat("d MMMM yyyy", Locale.CANADA)
+    return dateFormat.format(this)
 }

@@ -19,6 +19,7 @@ data class Student(
     val lastName: String,
     val nickname: String,
     val birthday: Date,
+    val joined: Date,
     val guardianId: Int,
     val houseNumber: String,
     val streetName: String,
@@ -31,3 +32,13 @@ data class Student(
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
 }
+
+data class StudentOverview(
+    @ColumnInfo("id") val id: Int,
+    @ColumnInfo("nickname") val nickname: String?,
+    @ColumnInfo("firstName") val firstName: String,
+    @ColumnInfo("lastName") val lastName: String,
+    @ColumnInfo("birthday") val birthday: Date,
+    @ColumnInfo("imageId") @DrawableRes val imageId: Int,
+    @ColumnInfo("guardianId") val guardianId: Int
+)

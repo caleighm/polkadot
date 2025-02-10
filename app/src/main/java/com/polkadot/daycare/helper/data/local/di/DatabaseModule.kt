@@ -8,6 +8,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import com.polkadot.daycare.helper.data.local.database.AppDatabase
+import com.polkadot.daycare.helper.data.local.database.GuardianDao
 import com.polkadot.daycare.helper.data.local.database.StudentDao
 import javax.inject.Singleton
 
@@ -17,6 +18,11 @@ class DatabaseModule {
     @Provides
     fun provideStudentDao(appDatabase: AppDatabase): StudentDao {
         return appDatabase.studentDao()
+    }
+
+    @Provides
+    fun provideGuardianDao(appDatabase: AppDatabase): GuardianDao {
+        return appDatabase.guardianDao()
     }
 
     @Provides

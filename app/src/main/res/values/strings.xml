@@ -4,5 +4,17 @@
     <!-- Student Screen -->
     <string name="student_title">Students</string>
     <string name="student_guardian">Guardian: %1$s (%2$s)</string>
-    <string name="student_age">%1$s years old (%2$s)</string>
+    <string name="student_years_old">%1$s years old</string>
+
+    <!-- Student Details Screen -->
+    <string name="student_details_birthday_header">Birthday</string>
+    <string name="student_details_guardian_header">Guardian</string>
+    <string name="student_details_guardian_phone_header">Phone</string>
+    <string name="student_details_guardian_email_header">Email</string>
+    <string name="student_details_address_header">Address</string>
+    <string name="student_details_address_body">%1$s %2$s, %3$s, %4$s, %5$s</string>
+    <string name="student_details_allergies_header">Allergies</string>
+    <string name="student_details_emergency_header">Emergency</string>
+
+    <string name="text_none">None</string>
 </resources>

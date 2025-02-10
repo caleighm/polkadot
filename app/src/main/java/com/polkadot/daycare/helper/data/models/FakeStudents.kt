@@ -8,6 +8,7 @@ val PennyWarbler = Student(
     lastName = "Warbler",
     nickname = "Penny",
     birthday = Date.valueOf("2022-10-1"),
+    joined = Date.valueOf("2023-9-1"),
     guardianId = PapaWarbler.id,
     houseNumber = "123",
     streetName = "Main St.",
@@ -15,7 +16,7 @@ val PennyWarbler = Student(
     province = "British Columbia",
     postalCode = "1A2 B3C",
     allergies = "Cats",
-    imageId = R.drawable.penny_warbler
+    imageId = R.drawable.penny_warbler2
 )
 
 val GeraldGiraffe = Student(
@@ -23,6 +24,7 @@ val GeraldGiraffe = Student(
     lastName = "Giraffe",
     nickname = "GerBear",
     birthday = Date.valueOf("2022-12-1"),
+    joined = Date.valueOf("2025-01-5"),
     guardianId = MamaGiraffe.id,
     houseNumber = "234",
     streetName = "Side St.",
@@ -30,15 +32,15 @@ val GeraldGiraffe = Student(
     province = "British Columbia",
     postalCode = "1A2 B3C",
     allergies = "",
-    imageId = R.drawable.penny_warbler // TODO find a giraffe
+    imageId = R.drawable.gerald_giraffe
 )
-
 
 val LolaLizard = Student(
     firstName = "Lola",
     lastName = "Lizard",
     nickname = "Lola",
     birthday = Date.valueOf("2021-9-1"),
+    joined = Date.valueOf("2023-10-5"),
     guardianId = MamaLizard.id,
     houseNumber = "345-1",
     streetName = "Another St.",
@@ -46,7 +48,19 @@ val LolaLizard = Student(
     province = "British Columbia",
     postalCode = "1A2 B3C",
     allergies = "",
-    imageId = R.drawable.penny_warbler // TODO find a lizard
+    imageId = R.drawable.lola_lizard
 )
 
-val fakeStudents = listOf(PennyWarbler, GeraldGiraffe, LolaLizard)
+fun Student.getBasics(): StudentOverview {
+    return StudentOverview(
+        firstName = this.firstName,
+        lastName = this.lastName,
+        nickname = this.nickname,
+        birthday = this.birthday,
+        imageId = this.imageId,
+        id = this.id,
+        guardianId = this.guardianId
+    )
+}
+
+val fakeStudents = listOf(PennyWarbler.getBasics(), GeraldGiraffe.getBasics(), LolaLizard.getBasics())

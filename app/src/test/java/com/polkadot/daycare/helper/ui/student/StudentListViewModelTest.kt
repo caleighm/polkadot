@@ -9,16 +9,16 @@ import org.junit.Test
 import com.polkadot.daycare.helper.data.StudentRepository
 import com.polkadot.daycare.helper.data.models.Student
 
-class StudentViewModelTest {
+class StudentListViewModelTest {
     @Test
     fun uiState_initiallyLoading() = runTest {
-        val viewModel = StudentViewModel(FakeStudentRepository())
+        val viewModel = StudentListViewModel(FakeStudentRepository())
         assertEquals(viewModel.uiState.first(), StudentUiState.Loading)
     }
 
     @Test
     fun uiState_onItemSaved_isDisplayed() = runTest {
-        val viewModel = StudentViewModel(FakeStudentRepository())
+        val viewModel = StudentListViewModel(FakeStudentRepository())
         assertEquals(viewModel.uiState.first(), StudentUiState.Loading)
     }
 }

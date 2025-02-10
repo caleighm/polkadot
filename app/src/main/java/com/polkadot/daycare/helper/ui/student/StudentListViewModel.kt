@@ -12,18 +12,19 @@ import kotlinx.coroutines.launch
 import com.polkadot.daycare.helper.data.StudentRepository
 import com.polkadot.daycare.helper.data.models.GeraldGiraffe
 import com.polkadot.daycare.helper.data.models.Student
+import com.polkadot.daycare.helper.data.models.StudentOverview
 import com.polkadot.daycare.helper.ui.student.StudentUiState.Error
 import com.polkadot.daycare.helper.ui.student.StudentUiState.Loading
 import com.polkadot.daycare.helper.ui.student.StudentUiState.Success
 import javax.inject.Inject
 
 @HiltViewModel
-class StudentViewModel @Inject constructor(
+class StudentListViewModel @Inject constructor(
     private val studentRepository: StudentRepository
 ) : ViewModel() {
 
     val uiState: StateFlow<StudentUiState> = studentRepository
-        .students.map<List<Student>, StudentUiState>(::Success)
+        .students.map<List<StudentOverview>, StudentUiState>(::Success)
         .catch { emit(Error(it)) }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), Loading)
 
@@ -34,6 +35,7 @@ class StudentViewModel @Inject constructor(
                 lastName = GeraldGiraffe.lastName,
                 nickname = GeraldGiraffe.nickname,
                 birthday = GeraldGiraffe.birthday,
+                joined = GeraldGiraffe.joined,
                 guardianId = GeraldGiraffe.guardianId,
                 houseNumber = GeraldGiraffe.houseNumber,
                 streetName = GeraldGiraffe.streetName,
@@ -50,5 +52,5 @@ class StudentViewModel @Inject constructor(
 sealed interface StudentUiState {
     object Loading : StudentUiState
     data class Error(val throwable: Throwable) : StudentUiState
-    data class Success(val data: List<Student>) : StudentUiState
+    data class Success(val data: List<StudentOverview>) : StudentUiState
 }
