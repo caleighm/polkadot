@@ -71,17 +71,24 @@ internal fun StudentDetailScreen(
 
         Column(Modifier.fillMaxWidth()) {
             Text(
-                text = "${student.firstName} ${student.lastName}",
+                text = student.nickname,
                 style = typography.headlineMedium,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.padding(top = 16.dp).fillMaxWidth()
+            )
+            Text(
+                text = "${student.firstName} ${student.lastName}",
+                style = typography.labelLarge,
+                textAlign = TextAlign.Center,
+                color = MaterialTheme.colorScheme.secondary,
+                modifier = Modifier.padding(top = 8.dp).fillMaxWidth()
             )
             Text(
                 text = "Joined: ${student.joined.toPrettyString()}",
                 style = typography.labelSmall,
                 color = MaterialTheme.colorScheme.secondary,
                 textAlign = TextAlign.Center,
-                modifier = Modifier.fillMaxWidth().padding(top = 8.dp, bottom = 16.dp)
+                modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
             )
 
             StudentDetailSection(

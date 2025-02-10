@@ -51,7 +51,7 @@ fun StudentCardTop(
             Column {
                 Column(Modifier.padding(12.dp)) {
                     Text(
-                        text = student.nickname ?: student.firstName,
+                        text = student.nickname.ifEmpty { student.firstName },
                         style = typography.titleMedium,
                         modifier = Modifier.padding(bottom = 8.dp),
                         color = MaterialTheme.colorScheme.tertiary

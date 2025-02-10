@@ -1,6 +1,7 @@
 package com.polkadot.daycare.helper.data.models
 
 import androidx.annotation.DrawableRes
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
@@ -35,7 +36,7 @@ data class Student(
 
 data class StudentOverview(
     @ColumnInfo("id") val id: Int,
-    @ColumnInfo("nickname") val nickname: String?,
+    @ColumnInfo("nickname") val nickname: String,
     @ColumnInfo("firstName") val firstName: String,
     @ColumnInfo("lastName") val lastName: String,
     @ColumnInfo("birthday") val birthday: Date,
