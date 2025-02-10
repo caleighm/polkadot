@@ -1,7 +1,6 @@
 # TODO
 
-- Student list
-- Nav bar / header / something
+- Network mock
 - Add student
 - Add guardian
 - Remove student
@@ -14,3 +13,11 @@
 - Nicer UI lol
 - Local server with authentication
 - Dynamic colours
+
+# DONE
+
+- Student list
+- Nav bar / header / something
+- Student details
+- Material3 theme
+- Mock log-in
