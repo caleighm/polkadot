@@ -1,5 +1,7 @@
 # TODO
 
+- Student list
+- Nav bar / header / something
 - Add student
 - Add guardian
 - Remove student

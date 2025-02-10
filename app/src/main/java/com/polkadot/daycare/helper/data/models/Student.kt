@@ -1,7 +1,6 @@
 package com.polkadot.daycare.helper.data.models
 
 import androidx.annotation.DrawableRes
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
