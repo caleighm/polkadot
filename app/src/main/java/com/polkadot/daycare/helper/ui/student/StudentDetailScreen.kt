@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MaterialTheme.typography
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -35,6 +36,8 @@ import com.polkadot.daycare.helper.data.models.MamaGiraffe
 import com.polkadot.daycare.helper.data.models.Student
 import com.polkadot.daycare.helper.data.models.toPrettyString
 import com.polkadot.daycare.helper.data.models.yearsOld
+import com.polkadot.daycare.helper.ui.composables.PolkadotAppBar
+import com.polkadot.daycare.helper.ui.composables.TextWithLabel
 import com.polkadot.daycare.helper.ui.theme.PolkadotAppTheme
 
 @Composable
@@ -56,132 +59,109 @@ internal fun StudentDetailScreen(
     guardian: Guardian,
     modifier: Modifier = Modifier,
 ) {
-    Column(modifier.padding(24.dp)) {
-        Box(Modifier.align(Alignment.CenterHorizontally)) {
-            Image(
-                painter = painterResource(student.imageId),
-                contentDescription = student.nickname,
-                modifier = Modifier
-                    .size(256.dp)
-                    .clip(CircleShape)
-                    .border(2.dp, MaterialTheme.colorScheme.outline, CircleShape),
-                contentScale = ContentScale.Crop
-            )
-        }
-
-        Column(Modifier.fillMaxWidth()) {
-            Text(
-                text = student.nickname,
-                style = typography.headlineMedium,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.padding(top = 16.dp).fillMaxWidth()
-            )
-            Text(
-                text = "${student.firstName} ${student.lastName}",
-                style = typography.labelLarge,
-                textAlign = TextAlign.Center,
-                color = MaterialTheme.colorScheme.secondary,
-                modifier = Modifier.padding(top = 8.dp).fillMaxWidth()
-            )
-            Text(
-                text = "Joined: ${student.joined.toPrettyString()}",
-                style = typography.labelSmall,
-                color = MaterialTheme.colorScheme.secondary,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
-            )
-
-            StudentDetailSection(
-                modifier,
-                label = stringResource(
-                    id = R.string.student_details_birthday_header
-                ),
-                body = "${stringResource(
-                    id = R.string.student_years_old, 
-                    formatArgs = arrayOf(student.birthday.yearsOld()))} (${student.birthday.toPrettyString()})"
-            )
-
-            StudentDetailSection(
-                modifier,
-                label = stringResource(
-                    id = R.string.student_details_guardian_header
-                ),
-                body = guardian.name
-            )
-
-            StudentDetailSection(
-                modifier,
-                label = stringResource(
-                    id = R.string.student_details_guardian_phone_header
-                ),
-                body = guardian.phone
-            )
-
-            StudentDetailSection(
-                modifier,
-                label = stringResource(
-                    id = R.string.student_details_guardian_email_header
-                ),
-                body = guardian.email
-            )
-
-            StudentDetailSection(
-                modifier,
-                label = stringResource(
-                    id = R.string.student_details_address_header
-                ),
-                body = stringResource(
-                    id = R.string.student_details_address_body,
-                    formatArgs = arrayOf(
-                        student.houseNumber,
-                        student.streetName,
-                        student.city,
-                        student.province,
-                        student.postalCode
+    Scaffold(
+        topBar = { PolkadotAppBar(modifier) },
+    ) { innerPadding ->
+        Box(modifier.padding(innerPadding)) {
+            Column(modifier.padding(24.dp)) {
+                Box(Modifier.align(Alignment.CenterHorizontally)) {
+                    Image(
+                        painter = painterResource(student.imageId),
+                        contentDescription = student.nickname,
+                        modifier = Modifier
+                            .size(256.dp)
+                            .clip(CircleShape)
+                            .border(2.dp, MaterialTheme.colorScheme.outline, CircleShape),
+                        contentScale = ContentScale.Crop
                     )
-                )
-            )
+                }
 
-            StudentDetailSection(
-                modifier,
-                label = stringResource(
-                    id = R.string.student_details_allergies_header
-                ),
-                body = student.allergies.ifEmpty { stringResource(
-                    id = R.string.text_none
-                ) }
-            )
+                Column(Modifier.fillMaxWidth()) {
+                    Text(
+                        text = student.nickname,
+                        style = typography.headlineMedium,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.padding(top = 16.dp).fillMaxWidth()
+                    )
+                    Text(
+                        text = "${student.firstName} ${student.lastName}",
+                        style = typography.labelLarge,
+                        textAlign = TextAlign.Center,
+                        color = MaterialTheme.colorScheme.secondary,
+                        modifier = Modifier.padding(top = 8.dp).fillMaxWidth()
+                    )
+                    Text(
+                        text = "Joined: ${student.joined.toPrettyString()}",
+                        style = typography.labelSmall,
+                        color = MaterialTheme.colorScheme.secondary,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
+                    )
 
+                    TextWithLabel(
+                        modifier,
+                        label = stringResource(
+                            id = R.string.student_details_birthday_header
+                        ),
+                        body = "${stringResource(
+                            id = R.string.student_years_old,
+                            formatArgs = arrayOf(student.birthday.yearsOld()))} (${student.birthday.toPrettyString()})"
+                    )
 
-        }
-    }
-}
+                    TextWithLabel(
+                        modifier,
+                        label = stringResource(
+                            id = R.string.student_details_guardian_header
+                        ),
+                        body = guardian.name
+                    )
 
-@Composable
-internal fun StudentDetailSection(modifier: Modifier, label: String, body: List<String>?) {
-    Row(modifier = modifier.padding(top = 8.dp), verticalAlignment = Alignment.CenterVertically) {
-        Text(
-            text = label,
-            style = typography.labelSmall,
-            color = MaterialTheme.colorScheme.primary,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.width(50.dp)
-        )
-        Spacer(Modifier.size(8.dp))
-        if (body != null) {
-            for (line in body) {
-                Text(
-                    text = line,
-                    style = typography.bodySmall
-                )
+                    TextWithLabel(
+                        modifier,
+                        label = stringResource(
+                            id = R.string.student_details_guardian_phone_header
+                        ),
+                        body = guardian.phone
+                    )
+
+                    TextWithLabel(
+                        modifier,
+                        label = stringResource(
+                            id = R.string.student_details_guardian_email_header
+                        ),
+                        body = guardian.email
+                    )
+
+                    TextWithLabel(
+                        modifier,
+                        label = stringResource(
+                            id = R.string.student_details_address_header
+                        ),
+                        body = stringResource(
+                            id = R.string.student_details_address_body,
+                            formatArgs = arrayOf(
+                                student.houseNumber,
+                                student.streetName,
+                                student.city,
+                                student.province,
+                                student.postalCode
+                            )
+                        )
+                    )
+
+                    TextWithLabel(
+                        modifier,
+                        label = stringResource(
+                            id = R.string.student_details_allergies_header
+                        ),
+                        body = student.allergies.ifEmpty { stringResource(
+                            id = R.string.text_none
+                        ) }
+                    )
+                }
             }
         }
     }
-}
-
-@Composable
-internal fun StudentDetailSection(modifier: Modifier, label: String, body: String?) {
-    StudentDetailSection(modifier, label, if (body != null) listOf(body) else null)
 }
 
 // Previews

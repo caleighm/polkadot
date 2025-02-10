@@ -54,7 +54,7 @@ fun StudentCardTop(
                         text = student.nickname.ifEmpty { student.firstName },
                         style = typography.titleMedium,
                         modifier = Modifier.padding(bottom = 8.dp),
-                        color = MaterialTheme.colorScheme.tertiary
+                        color = MaterialTheme.colorScheme.secondary
                     )
                     Text(
                         text = "${student.firstName} ${student.lastName}",

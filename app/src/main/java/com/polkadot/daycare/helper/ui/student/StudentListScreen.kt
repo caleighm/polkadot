@@ -9,10 +9,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MaterialTheme.typography
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -21,6 +25,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.toLowerCase
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -28,6 +33,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.polkadot.daycare.helper.R
 import com.polkadot.daycare.helper.data.models.StudentOverview
 import com.polkadot.daycare.helper.data.models.fakeStudents
+import com.polkadot.daycare.helper.ui.composables.PolkadotAppBar
+import java.util.Locale
 
 @Composable
 fun StudentsScreen(
@@ -52,41 +59,45 @@ internal fun StudentsScreen(
     onNavigateToStudentDetails: (studentId: Int, guardianId: Int) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Column(modifier) {
-        Text(
-            text = stringResource(
-                id = R.string.student_title
-            ),
-            style = typography.titleLarge,
-            textAlign = TextAlign.Center,
-            color = MaterialTheme.colorScheme.primary,
-            modifier = Modifier
-                .padding(8.dp)
-                .fillMaxWidth()
-        )
+    Scaffold(
+        topBar = { PolkadotAppBar(modifier) },
+    ) { innerPadding ->
+        Column(modifier.padding(innerPadding)) {
+            Text(
+                text = stringResource(
+                    id = R.string.student_title
+                ),
+                style = typography.titleLarge,
+                textAlign = TextAlign.Center,
+                color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier
+                    .padding(8.dp)
+                    .fillMaxWidth()
+            )
 
-        Row {
-            Column(modifier) {
-                students.forEach {
-                    StudentCardTop(it, Modifier.clickable {
-                        onNavigateToStudentDetails(it.id, it.guardianId)
-                    })
-                }
+            Row {
+                Column(modifier) {
+                    students.forEach {
+                        StudentCardTop(it, Modifier.clickable {
+                            onNavigateToStudentDetails(it.id, it.guardianId)
+                        })
+                    }
 
-                var nameStudent by remember { mutableStateOf("Compose") }
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = 24.dp),
-                    horizontalArrangement = Arrangement.spacedBy(16.dp)
-                ) {
-                    TextField(
-                        value = nameStudent,
-                        onValueChange = { nameStudent = it }
-                    )
+                    var nameStudent by remember { mutableStateOf("Compose") }
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(bottom = 24.dp),
+                        horizontalArrangement = Arrangement.spacedBy(16.dp)
+                    ) {
+                        TextField(
+                            value = nameStudent,
+                            onValueChange = { nameStudent = it }
+                        )
 
-                    Button(modifier = Modifier.width(96.dp), onClick = { onSave(nameStudent) }) {
-                        Text("Save")
+                        Button(modifier = Modifier.width(96.dp), onClick = { onSave(nameStudent) }) {
+                            Text("Save")
+                        }
                     }
                 }
             }
