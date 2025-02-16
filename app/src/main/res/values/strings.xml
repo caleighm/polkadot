@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">Polkadot</string>
 
+    <!-- Nav rail -->
+    <string name="nav_home">Home</string>
+    <string name="nav_students">Students</string>
+    <string name="nav_enroll">Enrollment</string>
+    <string name="nav_profile">Profile</string> <!-- TODO is this going to be used? -->
+    <string name="nav_settings">Settings</string>
+
     <!-- Student Screen -->
     <string name="student_title">Students</string>
     <string name="student_guardian">Guardian: %1$s (%2$s)</string>
@@ -15,6 +22,9 @@
     <string name="student_details_address_body">%1$s %2$s, %3$s, %4$s, %5$s</string>
     <string name="student_details_allergies_header">Allergies</string>
     <string name="student_details_emergency_header">Emergency</string>
+
+    <!-- Enrollment Screen -->
+    <string name="enrollment_title">Enroll</string>
 
     <string name="text_none">None</string>
 </resources>
